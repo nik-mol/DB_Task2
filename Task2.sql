@@ -27,8 +27,7 @@ CREATE TABLE IF NOT EXISTS Album (
 --Треки
 CREATE TABLE IF NOT EXISTS Track (
 	id INTEGER PRIMARY KEY,
-	album_id INTEGER UNIQUE REFERENCES Album(id),
-	compilation_id INTEGER REFERENCES Сompilation(id),	
+	album_id INTEGER UNIQUE REFERENCES Album(id),	
 	name VARCHAR(30) NOT NULL,
 	length TIME NOT NULL
 );
@@ -45,4 +44,11 @@ CREATE TABLE IF NOT EXISTS PerfomerAlbum (
 	perfomer_id INTEGER REFERENCES Perfomer(id),
 	album_id INTEGER REFERENCES Album(id),
 	PRIMARY KEY (perfomer_id, album_id)
+);
+
+--СборникиТреки
+CREATE TABLE IF NOT EXISTS СompilationTrack (
+	compilation_id INTEGER REFERENCES Сompilation(id),
+	track_id INTEGER REFERENCES Track(id),
+	PRIMARY KEY (compilation_id, track_id)
 );
